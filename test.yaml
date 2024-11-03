@@ -3,15 +3,20 @@ info:
   title: API Title
   version: '1.0'
 servers:
-  - url: https://api.server.test/v1
+  - url: http://localhost:3000
 paths:
-  /info/logo:
-    get:
+  /test:
+    post:
+      parameters:
+        - in: query
+          name: color
+          schema:
+            type: array
+            items:
+              type: string
+          # Serialize as color=blue,black,brown (default)
+          style: form
+          explode: false
       responses:
-        '200': # Resp
+        200:
           description: OK
-          content: # Resp body
-            image/*: # Media type
-              schema:
-                type: string
-                format: binary
